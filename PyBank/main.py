@@ -74,6 +74,10 @@ def processBudgetData():
             print("Greatest decrease in losses: " + greatest_decrease["Date"] + "  ($" + str(greatest_decrease["Losses"]) + ")")
 
             with open("PyBank.txt", "w") as pyBankFile:
-                pyBankFile.write("Total Months: " + str(total_no_of_months))
+                pyBankFile.write("Total Months: " + str(total_no_of_months)+"\n")
+                pyBankFile.write("Total : $" + str(total_profit_loss)+"\n")
+                pyBankFile.write("Total Change: " + str(average_change)+"\n")
+                pyBankFile.write("Greatest increase in profits: " + greatest_increase["Date"] + " ($" + str(greatest_increase["Profits"]) + ")\n")
+                pyBankFile.write("Greatest decrease in losses: " + greatest_decrease["Date"] + "  ($" + str(greatest_decrease["Losses"]) + ")\n")
                 
 processBudgetData()
