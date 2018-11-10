@@ -24,11 +24,13 @@ def processBudgetData():
                 4. Greatest increase in profits
                 5. Greatest decrease in losses.
             '''
-            total_profit_loss = 0
+            total_profit_loss = 0.0
             total_no_of_months = 0
             total_changes = 0.0
             average_change = 0.0
-            previous_profitloss = 0
+            previous_profitloss = 0.0
+            diffPL = 0.0
+
             greatest_increase = {
                 "Profits":0,
                 "Date":None
@@ -43,18 +45,19 @@ def processBudgetData():
                     previous_profitloss = float(row[1])
                 else:
                     total_profit_loss = total_profit_loss + int(row[1])
-                    #print("total change " + str(total_change) + "  " + row[1] + " " + str(previous_profitloss))
-                    total_changes = total_changes + ((float(row[1])) - previous_profitloss)
+                    diffPL = ((float(row[1])) - previous_profitloss)
+                    total_changes = total_changes + diffPL
                     total_no_of_months = index+1
-                    previous_profitloss = float(row[1])    
-
-                    if greatest_increase["Profits"] < int(row[1]):
-                        greatest_increase["Profits"] = int(row[1])
+                    
+                    if greatest_increase["Profits"] < diffPL:
+                        greatest_increase["Profits"] = diffPL
                         greatest_increase["Date"] = row[0]
 
-                    if greatest_decrease["Losses"] > int(row[1]):
-                        greatest_decrease["Losses"] = int(row[1])
+                    if greatest_decrease["Losses"] > diffPL:
+                        greatest_decrease["Losses"] = diffPL
                         greatest_decrease["Date"] = row[0]
+
+                    previous_profitloss = float(row[1])    
 
             average_change = round((total_changes / (total_no_of_months - 1)), 2)
             #return total_change, total_no_of_months, total_profit_loss
@@ -67,6 +70,10 @@ def processBudgetData():
             print("Total Months: " + str(total_no_of_months))
             print("Total : $" + str(total_profit_loss))
             print("Total Change: " + str(average_change))
-            print("Greatest increase in profits: " + greatest_increase["Date"] + " " + str(greatest_increase["Profits"]))
-            print("Greatest decrease in losses: " + greatest_decrease["Date"] + " " + str(greatest_decrease["Losses"]))
+            print("Greatest increase in profits: " + greatest_increase["Date"] + " ($" + str(greatest_increase["Profits"]) + ")")
+            print("Greatest decrease in losses: " + greatest_decrease["Date"] + "  ($" + str(greatest_decrease["Losses"]) + ")")
+
+            with open("PyBank.txt", "w") as pyBankFile:
+                pyBankFile.write("Total Months: " + str(total_no_of_months))
+                
 processBudgetData()
