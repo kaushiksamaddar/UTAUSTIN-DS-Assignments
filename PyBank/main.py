@@ -41,10 +41,10 @@ def processBudgetData():
             }
 
             for index, row in enumerate(bdfReader):
+                total_profit_loss = total_profit_loss + int(row[1])
                 if(index == 0):
                     previous_profitloss = float(row[1])
                 else:
-                    total_profit_loss = total_profit_loss + int(row[1])
                     diffPL = ((float(row[1])) - previous_profitloss)
                     total_changes = total_changes + diffPL
                     total_no_of_months = index+1
