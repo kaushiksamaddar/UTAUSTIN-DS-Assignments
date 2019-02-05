@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Latitude Weather Analysis</title>
+    <title>Bootstrap Visualization Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -65,26 +65,20 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default" style="margin-left: 20px; width: 100%">
+                <div class="panel panel-default" style="margin-left: 20px; width: 80%">
                     <div class="panel-body">
 
-                        <h2>Summary: Latitude vs. X</h2>
+                        <h2>Wind Speed</h2>
                         <hr>
-                        <img class="img-responsive" src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/TempvsLatitude.png"
-                            style="width:40%; float: left; margin: 10px;" alt="first image">
+                        <div class="row">
+                            <img class="img-responsive" src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/WindSpeedVsLatitude.png"
+                            style="width:80%; float: left; margin: 10px;" alt="first image">
+                        </div>
 
-                        <p style="margin-top:6%">The purpose of this project was to analyze how weather changes as you
-                            get closer to
-                            the equator. To accomplish this analysis, we first pulled data from the
-                            OpenWeatherMap API to assemble a dataset on over 500 cities.
-                            <br>
-                            <br>
-                            After assembling the dataset, we used Matplotlib to plot various aspects of the
-                            weather vs. latitude. Factors we looked at included: temperature, cloudiness,
-                            windspeed, and humidity. This site provides the source data and visualizations
-                            created as a part of the analysis, as well as explanations and descriptions of any
-                            trends and correlations witnessed.
-
+                        <p style="margin-top:6%">
+                            More cities are concenatrated where the wind speed is between (0 - 15). 
+                            With the increase in the speed, the city density is less and scattered. 
+                            Thus it can be said that population and hence more cities are developed where the wind speed is less and vice-versa.
                         </p>
 
                     </div>
@@ -101,18 +95,18 @@
                         <h2>Visualizations</h2>
                         <hr style="padding-bottom: 20px">
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="temperature.html"><img class="img img-responsive"
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3"><a href="temperature.html"><img class="img img-responsive"
                                         src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/TempvsLatitude.png"
                                         style="width:100%" alt="Temperature Image"></a></div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="humidity.html"><img class="img img-responsive"
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3"><a href="humidity.html"><img class="img img-responsive"
                                         src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/HumidityVsLatitude.png"
                                         style="width:100%" alt="Humidity Image"></a></div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="cloud_cover.html"><img class="img img-responsive"
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3"><a href="cloud_cover.html"><img class="img img-responsive"
                                         src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/CloudinessVsLatitude.png"
                                         style="width:100%" alt="Cloud Image"></a></div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><a href="wind_speed.html"><img class="img img-responsive"
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3"><a href="wind_speed.html"><img class="img img-responsive"
                                         src="/Users/kaushiksamaddar/UT Austin/bootcamps/UTAUSTIN-DS-Assignments/Python_APIs/WindSpeedVsLatitude.png"
                                         style="width:100%" alt="Wind Speed Image"></a></div>
                         </div>
