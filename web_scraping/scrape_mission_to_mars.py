@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from splinter import Browser
 import pandas as pd
 import requests
+import time
 import pprint
 
 
@@ -36,19 +37,17 @@ def scrape():
     #Use splinter to click on the mars featured image
     #to bring the full resolution image
     results = browser.find_by_xpath(xpath)
-    print("Results: %s" %results)
     img = results[0]
-    print(img)
     img.click()
+    time.sleep(3)
 
     base_url = image_url.rsplit('/',2)[0]
 
     #get image url using BeautifulSoup
-    # html_image = browser.html
-    # soup = BeautifulSoup(html_image, "html.parser")
-    # print("soup: %s" %soup)
-    # img_url = soup.find("img", class_="fancybox-image")['src']
-    # featured_image_url = base_url + img_url
+    html_image = browser.html
+    soup = BeautifulSoup(html_image, "html.parser")
+    img_url = soup.find("img", class_="fancybox-image")['src']
+    featured_image_url = base_url + img_url
 
     #Mars weather
     #Use Splinter to visit Mars URL.
@@ -120,7 +119,7 @@ def scrape():
     print("============= Mars Facts ===========================================================================")
     print(f" Head Line : {mars_facts['headline']}")
     print(f" Description : {mars_facts['description']}")
-    #print(f"The featured Image URL is : {featured_image_url}")
+    print(f"The featured Image URL is : {featured_image_url}")
     print(f"Mars Weather Tweet: {mars_facts['weathertweet']} ")
     print(f"Mars Facts: {mars_facts['table']}")
     print(f"hemisphere_image_urls = {pprint.pprint(mars_facts['hemispheres'], indent=1)} ")
