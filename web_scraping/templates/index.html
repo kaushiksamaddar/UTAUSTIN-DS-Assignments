@@ -7,26 +7,68 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div class="container">
 
     <div class="jumbotron text-center">
-      <h1>Mars Facts</h1>
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Craigslist Listings -->
-    <div class="row" id="mars-listings">
+    <div class="row">
       <div class="col-md-12">
-        <h4 class="heading">{{listings.headline}} {{listings.description}}</h4>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Latest Mars News</h3>
+          </div>
+          <div class="panel-body">
+            <h4>{{ listings.headline }}</h4>
+            <p>{{ listings.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    {{ listings.table | safe }}
-    
+    <div class="row">
+      <div class="col-md-8">
+        <img class="img-responsive" src = {{ listings.featured_image_url }} style="height:500px; width:50%; float: left; margin: 10px;" alt="first image">
+      </div>
+
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Latest Mars Weather</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{ listings.weathertweet }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Latest Mars Weather</h3>
+          </div>
+          <div class="panel-body">
+            <p>{{ listings.table | safe }}</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
   </div>
 </body>
 
 </html>
-

@@ -47,7 +47,7 @@ def scrape():
     html_image = browser.html
     soup = BeautifulSoup(html_image, "html.parser")
     img_url = soup.find("img", class_="fancybox-image")['src']
-    featured_image_url = base_url + img_url
+    mars_facts['featured_image_url'] = base_url + img_url
 
     #Mars weather
     #Use Splinter to visit Mars URL.
@@ -73,7 +73,7 @@ def scrape():
     mars_facts_df.columns = ['Facts','Values']
 
     #Convert the DataFrame to an HTML table of type String
-    mars_facts_df_table = mars_facts_df.to_html()
+    mars_facts_df_table = mars_facts_df.to_html(index=False)
     mars_facts["table"] = mars_facts_df_table.replace('\n','')
     
     #Mars hemisphere
@@ -119,7 +119,7 @@ def scrape():
     print("============= Mars Facts ===========================================================================")
     print(f" Head Line : {mars_facts['headline']}")
     print(f" Description : {mars_facts['description']}")
-    print(f"The featured Image URL is : {featured_image_url}")
+    print(f"The featured Image URL is : {mars_facts['featured_image_url']}")
     print(f"Mars Weather Tweet: {mars_facts['weathertweet']} ")
     print(f"Mars Facts: {mars_facts['table']}")
     print(f"hemisphere_image_urls = {pprint.pprint(mars_facts['hemispheres'], indent=1)} ")
