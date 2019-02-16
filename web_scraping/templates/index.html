@@ -24,51 +24,61 @@
 
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Latest Mars News</h3>
-          </div>
+        <div>
+          <h3 class="panel-title">Latest Mars News</h3>
+        </div>
         <div>
           <h4>{{ listings.headline }}</h4>
           <p>{{ listings.description }}</p>
         </div>
       </div>
     </div>
-    </div>
 
     <div class="row">
       <div class="col-md-8">
-        <img class="img-responsive" src = {{ listings.featured_image_url }} style="height:500px; width:50%; float: left; margin: 10px;" alt="first image">
+        <img class="img-responsive" src={{ listings.featured_image_url }}
+          style="height:500px; width:50%; float: left; margin: 10px;" alt="first image">
       </div>
 
       <div class="col-md-4">
+        <div class="row" style="border:solid 1px rgb(216, 212, 212); width:80%; font-size: 12px;">
+          <h4 style="margin-left: 10px">Current Weather on Mars</h4>
+          <p style="margin-left: 10px">{{ listings.weathertweet }}</p>
+        </div>
+
+        <div class="row">
+          <h3 style="font-size: 15px;">Mars Facts</h3>
+          <p>{{ listings.table | safe }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 style="text-align:center">Mars Hemispheres</h3>
+      <hr>
+      <div class="col-md-12">
         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Latest Mars Weather</h3>
-          </div>
           <div class="panel-body">
-            <p>{{ listings.weathertweet }}</p>
+            <div class="row">
+              {% for image in listings.hemispheres %}
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <img class="img-responsive" src={{ image['img_url'] }}
+                      style="margin-left: 5px;" alt={{ image['title'] }}>
+                    <p> {{ image['title'] }} </p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Latest Mars Weather</h3>
-          </div>
-          <div class="panel-body">
-            <p>{{ listings.table | safe }}</p>
-          </div>
-        </div>
-      </div>
-
-
     </div>
 
   </div>
 
-  </div>
 </body>
 
 </html>
