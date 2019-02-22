@@ -9,7 +9,6 @@ var resetData = function (tbd) {
     tableData.forEach((tableData) => {
         //Create a reference to a table row.
         var row = tbd.append("tr")
-        console.log(row)
         //Unpack the dictionary into keys and values.
         //Create and get the reference to every cell in the row.
         //Populate the cell with an unpacked value.
@@ -29,11 +28,17 @@ filterBtn = d3.select("#filter-btn")
 
 filterBtn.on("click", function () {
     d3.event.preventDefault();
-    dateEntered = d3.select("#datetime").property('value')
-    console.log(`Date Entered : ${dateEntered}`)
+    searchData = d3.select("#datetime").property('value')
+    console.log(`Date Entered : ${searchData}`)
+
+    //Get the value from the combo box
+    selectCriteria = d3.select("#nav-select").property('value')
+    console.log(`Criteria specified: ${selectCriteria} `)
+
+    console.log(`thisData.${selectCriteria}`)
 
     //Filter the table as per the date entered by the user
-    var dataFiltered = tableData.filter(thisData => thisData.datetime === dateEntered)
+    var dataFiltered = tableData.filter(thisData => thisData[selectCriteria] === searchData)
     //console.log(dataFiltered)
 
     //Remove the Table Body to accommodate only the Filtered Data.
@@ -62,8 +67,8 @@ filterBtn.on("click", function () {
 resetBtn = d3.select("#reset-btn")
 
 resetBtn.on("click", function(){
-    d3.select("tbody").remove();
     d3.event.preventDefault();
+    d3.select("tbody").remove();
     
     //Create the Table Body again with just the cells to populate the Filtered Data.
     var tbody2 = d3.select("#ufo-table").append("tbody")
