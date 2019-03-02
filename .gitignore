@@ -5,3 +5,5 @@
 .DS_Store?
 .ipynb*
 *.pyc*
+web_scraping/.vscode/settings.json
+Interactive Dashboards and Visualizations/.vscode/settings.json
