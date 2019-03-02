@@ -34,7 +34,6 @@ Samples = Base.classes.samples
 @app.route("/")
 def index():
     """Return the homepage."""
-    print("Return the Homepage")
     return render_template("index.html")
 
 
