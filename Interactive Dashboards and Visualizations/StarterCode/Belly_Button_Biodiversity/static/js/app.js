@@ -6,16 +6,16 @@ function buildMetadata(sample) {
   // Use `.html("") to clear any existing metadata
   metaSelector.html("");
   // Use `Object.entries` to add each key and value pair to the panel
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
+  // Hint: Inside the loop, you will need to use d3 to append new
+  // tags for each key-value in the metadata.
   d3.json(`/metadata/${sample}`).then( metadata => {
     Object.entries(metadata).forEach( (entry) => {
       var para = metaSelector.append("p");
       para.text(`${entry[0]} : ${entry[1]}`);
     });
   });
-    // BONUS: Build the Gauge Chart
-    // buildGauge(data.WFREQ);
+  // BONUS: Build the Gauge Chart
+  // buildGauge(data.WFREQ);
 }
 
 function buildCharts(sample) {
@@ -66,7 +66,12 @@ function buildCharts(sample) {
 
 
   });
-  
+
+}
+
+//Construct the Gauge Chart out of the sample
+function buildGauge(sample){
+
 }
 
 function init() {
@@ -85,6 +90,9 @@ function init() {
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
+
+    //BONUS: Build Gauge Chart
+    buildGauge(newSample);
   });
 }
 
@@ -92,6 +100,9 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);
+
+  //BONUS: Build Gauge Chart
+  buildGauge(newSample);
 }
 
 // Initialize the dashboard
