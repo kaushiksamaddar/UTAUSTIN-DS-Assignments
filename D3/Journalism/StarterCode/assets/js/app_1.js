@@ -16,7 +16,7 @@ var svg = d3
 var chart = svg.append('g');
 
 // Append a div to the body to create tooltips, assign it a class
-//d3.select("#scatter").append("div").attr("class", "tooltip").style("opacity", 0);
+d3.select("#scatter").append("div").attr("class", "tooltip").style("opacity", 0);
 
 d3.csv("assets/data/data.csv").then(function (healthData) {
     healthData.forEach(function (data) {
@@ -59,21 +59,34 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
     yLinearScale.domain([yMin, yMax]);
 
     // Initialize tooltip 
-    var toolTip = d3
-        .tip()
-        .attr("class", "tooltip")
-        .offset([80, -60])
-        .html(function (data) {
-            var stateName = data.state;
-            var pov = +data.poverty;
-            var physAct = +data.healthcare;
-            return (
-                stateName + '<br> Poverty: ' + pov + '% <br> Obesity: ' + physAct + '%'
-            );
-        });
+    // var toolTip = d3
+    //     .tip()
+    //     .attr("class", "tooltip")
+    //     .offset([80, -60])
+    //     .html(function (data) {
+    //         var stateName = data.state;
+    //         var pov = +data.poverty;
+    //         var physAct = +data.healthcare;
+    //         return (
+    //             stateName + '<br> Poverty: ' + pov + '% <br> Obesity: ' + physAct + '%'
+    //         );
+    //     });
+
+    var toolTip = d3.select("body")
+      .append("div")
+      .classed("tooltip", true);
 
     // Create tooltip
-    chart.call(toolTip);
+    //chart.call(toolTip);
+
+    chart.selectAll("circle")
+        .enter()
+        .append("circle")
+        .attr("cx", 10)
+        .attr("cy", 10)
+        .attr("r", "15")
+        .attr("fill", "lightblue");
+
 
     chart.selectAll("circle")
         .data(healthData)
@@ -88,12 +101,18 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .attr("r", "15")
         .attr("fill", "lightblue")
         // display tooltip on click
-        .on("mouseenter", function (data) {
-            toolTip.show(data);
+        .on("mouseover", function (data) {
+            //toolTip.show(data);
+            toolTip
+            .style("display","block")
+            .html(`Pizzas eaten: <strong>${data.poverty}</strong>`)
+            .style("left", d3.event.pageX + "px")
+            .style("top", d3.event.pageY + "px");
         })
         // hide tooltip on mouseout
         .on("mouseout", function (data, index) {
-            toolTip.hide(data);
+            //toolTip.hide(data);
+            toolTip.style("display", "none");
         });
 
     // Appending a label to each data point
