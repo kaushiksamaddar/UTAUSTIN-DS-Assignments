@@ -1,6 +1,6 @@
 .aText {
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 10px;
   text-anchor: middle;
 }
 
@@ -42,14 +42,17 @@
 
 .d3-tip {
   padding: 6px;
-  font-size: 12px;
-  line-height: 1;
-  line-height: 1.5em;
+  font-size: 8px;
+  height: 30px;
+  width: 90px;
   color: #fff;
   text-align: center;
   text-transform: capitalize;
   background: rgba(0, 0, 0, 0.8);
+  border: 0;
   border-radius: 4px;
+  position: absolute;
+  display: none;
 }
 
 /* Mobile Rules */
