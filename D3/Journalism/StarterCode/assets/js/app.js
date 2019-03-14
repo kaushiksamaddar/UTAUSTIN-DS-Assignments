@@ -58,6 +58,9 @@ function makeResponsive() {
   // function used for updating y-scale var upon click on axis label
   function yScale(healthData, chosenYAxis) {
     // create scales
+    console.log(`${chosenYAxis} min. - ${d3.min(healthData, d => d[chosenYAxis]) }`)
+    console.log(`${chosenYAxis} max. - ${d3.max(healthData, d => d[chosenYAxis]) }`)
+
     var yLinearScale = d3.scaleLinear()
       .domain([d3.min(healthData, d => d[chosenYAxis]) * 0.67,
       d3.max(healthData, d => d[chosenYAxis]) * 1.02
@@ -197,7 +200,11 @@ function makeResponsive() {
     // parse data
     healthData.forEach(function (data) {
       data.poverty = +data.poverty;
+      data.age = +data.age;
+      data.income = +data.income;
       data.healthcare = +data.healthcare;
+      data.smokes = +data.smokes;
+      data.obesity = +data.obesity;
     });
 
     //Create X and Y Scales
@@ -206,7 +213,7 @@ function makeResponsive() {
 
     // create axes
     var bottomAxis = d3.axisBottom(xLinearScale);
-    var leftAxis = d3.axisLeft(yLinearScale).ticks(8);
+    var leftAxis = d3.axisLeft(yLinearScale);
 
     // append axes
     var xAxis = chartGroup.append("g")
