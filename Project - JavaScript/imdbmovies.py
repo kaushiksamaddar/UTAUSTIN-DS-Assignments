@@ -46,13 +46,26 @@ class Imdbmovies(db.Model):
 
 @app.route("/api/data")
 def list_pets():
-    results = db.session.query(Imdbmovies.Title, Imdbmovies.Director).all()
+    results = db.session.query(
+        Imdbmovies.Title, Imdbmovies.Director, Imdbmovies.Genre, Imdbmovies.Released, Imdbmovies.Actors, Imdbmovies.imdbVotes, Imdbmovies.Boxoffice,
+        Imdbmovies.Awards, Imdbmovies.Country, Imdbmovies.imdbRating, Imdbmovies.Website, Imdbmovies.Runtime
+        ).all()
 
     movies = []
     for result in results:
         movies.append({
             "Title": result[0],
-            "Director": result[1]
+            "Director": result[1],
+            "Genre" : result[2],
+            "Released" : result[3],
+            "Actors" : result[4],
+            "Votes" : result[5],
+            "Box Office Budget: " : result[6],
+            "Awards" : result[7],
+            "Country" : result[8],
+            "Ratings" : result[9],
+            "Web Site" : result[10],
+            "Runtime" : result[11]
         })
     return jsonify(movies)
 
