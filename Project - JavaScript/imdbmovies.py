@@ -37,7 +37,7 @@ class Imdbmovies(db.Model):
     imdbRating = db.Column(db.Float)
     imdbVotes = db.Column(db.String(64))
     imdbID = db.Column(db.Integer, primary_key = True)
-    Boxoffice = db.Column(db.String(64))
+    BoxOffice = db.Column(db.String(64))
     Production = db.Column(db.String(64))
     Website = db.Column(db.String(64))
 
@@ -47,7 +47,7 @@ class Imdbmovies(db.Model):
 @app.route("/api/data")
 def list_pets():
     results = db.session.query(
-        Imdbmovies.Title, Imdbmovies.Director, Imdbmovies.Genre, Imdbmovies.Released, Imdbmovies.Actors, Imdbmovies.imdbVotes, Imdbmovies.Boxoffice,
+        Imdbmovies.Title, Imdbmovies.Director, Imdbmovies.Genre, Imdbmovies.Released, Imdbmovies.Actors, Imdbmovies.imdbVotes, Imdbmovies.BoxOffice,
         Imdbmovies.Awards, Imdbmovies.Country, Imdbmovies.imdbRating, Imdbmovies.Website, Imdbmovies.Runtime
         ).all()
 
